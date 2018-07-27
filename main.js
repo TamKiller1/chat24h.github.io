@@ -45,7 +45,11 @@ socket.on('DANG_KY_THAT_BAT', () => alert('Vui long chon username khac!'));
 
 
 function openStream() {
-    const config = { audio: false, video: true };
+    const config = { audio: false, video: {
+                                    width: { min: 1024, ideal: 1280, max: 1920 },
+                                    height: { min: 776, ideal: 720, max: 1080 }
+                                  }
+   };
     return navigator.mediaDevices.getUserMedia(config);
 }
 
@@ -104,4 +108,8 @@ $('#ulUser').on('click', 'li', function() {
         const call = peer.call(id, stream);
         call.on('stream', remoteStream => playStream('remoteStream', remoteStream));
     });
+});
+
+$('.message a').click(function(){
+   $('form').animate({height: "toggle", opacity: "toggle"}, "slow");
 });
