@@ -45,7 +45,7 @@ socket.on('DANG_KY_THAT_BAT', () => alert('Vui long chon username khac!'));
 
 
 function openStream() {
-    const config = { audio: true, video: true };
+    const config = { audio: false, video: true };
     return navigator.mediaDevices.getUserMedia(config);
 }
 
@@ -55,6 +55,8 @@ function playStream(idVideoTag, stream) {
     audio[0].src = (URL || webkitURL || mozURL).createObjectURL(stream);
     video.srcObject = stream;
     video.play();
+    const config = { audio: true, video: true };
+    return navigator.mediaDevices.getUserMedia(config);
 }
 
 // openStream()
