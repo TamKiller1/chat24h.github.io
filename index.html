@@ -36,26 +36,41 @@
                                     <ul id="ulUser"></ul>
                                 </div>
                                 <div class="card-footer">
-                                	<h3 id="my-peer">ID: </h3>
+                                    <h3 id="my-peer">ID: </h3>
+                                </div>
+                            </div>
+                            <div id="step1" class="card" style="padding: 10px">
+                                <p>Please click `allow` on the top of the screen so we can access your webcam and microphone for calls.</p>
+                                <div id="step1-error" style="display: block;">
+                                    <p>Failed to access the webcam and microphone. Make sure to run this demo on an http server and click allow when asked for permission by the browser.</p>
+                                    <a href="#" class="btn btn-danger" id="step1-retry">Try again</a>
                                 </div>
                             </div>
                             <div id="call-ring" class="col-md-12" style="display: none;"></div>
                         </div>
                         <div class="col-md-6">
-                        	<div class="card">
-                        		<div class="card-header">
-                            		<video id="remoteStream" width="100%" style="max-height: 300px" controls></video>
-                            		<video id="localStream" width="50%" style="max-height: 100px" controls></video>
-                        		</div>
-                        		<div class="card-footer">
-                        			<div class="input-group">
-                        				<input type="text" id="remoteId" class="form-control" placeholder="ID">
-                            			<div class="input-group-btn">
-                            				<button id="btnCall" class="btn btn-danger">Gọi</button>
-                            			</div>
-                        			</div>
-                        		</div>
-                        	</div>
+                            <div class="card">
+                                <div class="card-header">
+                                    <video id="remoteStream" width="100%" style="max-height: 300px" controls></video>
+                                    <video id="localStream" width="50%" style="max-height: 100px" controls></video>
+                                </div>
+                                <div class="card-footer" id="step2">
+                                    <div class="input-group">
+                                        <input type="text" id="remoteId" class="form-control" placeholder="ID">
+                                        <div class="input-group-btn">
+                                            <button id="btnCall" class="btn btn-success">Gọi</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="step3" class="card-footer">
+                                    <div class="input-group">
+                                        <input type="text" id="their-id" class="form-control" disabled="true">
+                                        <div class="input-group-btn">
+                                            <button id="end-call" class="btn btn-danger">Kết thúc</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
