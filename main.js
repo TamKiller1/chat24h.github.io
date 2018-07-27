@@ -103,7 +103,6 @@ peer.on('call', call => {
 $('#ulUser').on('click', 'li', function() {
     const id = $(this).attr('id');
     console.log(id);
-    soundCall();
     openStream()
     .then(stream => {
         playStream('localStream', stream);
