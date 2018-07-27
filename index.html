@@ -1,29 +1,43 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <title>Video Call</title>
-        <script src="jquery.js"></script>
-        <script src="peer.js"></script>
-        <script src="socket.io.js"></script>
-    </head>
-    <body>
-        <div id="div-chat">
-            <p>Online user:</p>
-            <ul id="ulUser">
-            </ul>
-            <h3 id="my-peer">Your Id: </h3>
-            <video id="localStream" width="300" controls></video>
-            <br /><br />
-            <video id="remoteStream" width="300" controls></video>
-            <br /><br />
-            <input type="text" id="remoteId" placeholder="Remote ID">
-            <button id="btnCall">Call</button>
+<html lang="vi">
+
+<head>
+    <title>Video Call Online</title>
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+    <script src="jquery.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <script src="peer.js"></script>
+    <script src="socket.io.js"></script>
+</head>
+
+<body>
+    <div class="login-page" id="div-dang-ky">
+    	<h3 class="text-center">Video Chat Online</h3>
+        <div class="form">
+            <form class="login-form">
+                <input type="text" placeholder="Tên đăng nhập" id="txtUsername" />
+                <button type="button" id="btnSignUp">Đăng nhập</button>
+            </form>
+            <br>
+            <span>Nhập tên để vào chat</span>
         </div>
-        <div id="div-dang-ky">
-            <br /><br />
-            <input type="text" id="txtUsername" placeholder="Enter your username">
-            <button id="btnSignUp">Sign Up</button>
-        </div>
-    </body>
-    <script src="main.js"></script>
+    </div>
+    <div id="div-chat">
+        <p>Online user:</p>
+        <ul id="ulUser">
+        </ul>
+        <h3 id="my-peer">Your Id: </h3>
+        <video id="localStream" width="300" controls></video>
+        <br />
+        <br />
+        <video id="remoteStream" width="300" controls></video>
+        <br />
+        <br />
+        <input type="text" id="remoteId" placeholder="Remote ID">
+        <button id="btnCall">Call</button>
+    </div>
+</body>
+<script src="main.js"></script>
+
 </html>
