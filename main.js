@@ -60,9 +60,9 @@ function playStream(idVideoTag, stream) {
 
 const peer = new Peer({ 
     key: 'peerjs', 
-    host: 'chat24h.herokuapp.com', 
-    secure: true, 
-    port: 443, 
+    host: '172.245.190.67', 
+    secure: false, 
+    port: 9000, 
     config: customConfig 
 });
 
