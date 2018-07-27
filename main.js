@@ -116,8 +116,7 @@ function step1() {
     // Get audio/video stream
     navigator.getUserMedia({ audio: true, video: true }, function(stream) {
         // Set your video displays
-        $('#remoteStream').prop('src', URL.createObjectURL(stream));
-
+        $('#localStream').prop('src', URL.createObjectURL(stream));
         window.localStream = stream;
         step2();
     }, function() { $('#step1-error').show(); });
