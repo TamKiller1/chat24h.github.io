@@ -28,12 +28,12 @@ socket.on('DANH_SACH_ONLINE', arrUserInfo => {
 
     arrUserInfo.forEach(user => {
         const { ten, peerId } = user;
-        $('#ulUser').append(`<li id="${peerId}">${ten}</li>`);
+        $('#ulUser').append(`<li id="${peerId}" usr="${ten}">${ten}</li>`);
     });
 
     socket.on('CO_NGUOI_DUNG_MOI', user => {
         const { ten, peerId } = user;
-        $('#ulUser').append(`<li id="${peerId}">${ten}</li>`);
+        $('#ulUser').append(`<li id="${peerId}" usr="${ten}">${ten}</li>`);
     });
 
     socket.on('AI_DO_NGAT_KET_NOI', peerId => {
@@ -45,7 +45,11 @@ socket.on('DANG_KY_THAT_BAT', () => alert('Vui long chon username khac!'));
 
 
 function openStream() {
-    const config = { audio: true, video: true };
+    const config = { audio: false, video: {
+                                            width: { min: 1024, ideal: 1280, max: 1920 },
+                                            height: { min: 776, ideal: 720, max: 1080 }
+                                          }
+                    };
     return navigator.mediaDevices.getUserMedia(config);
 }
 
@@ -55,9 +59,41 @@ function playStream(idVideoTag, stream) {
     video.play();
 }
 
-function soundCall(){
+function alertCall(){
+    if (confirm("Có người gọi bạn") == true) {
+        audio.pause();
+        
+    } else {
+        audio.pause();
+        alert("Bạn đã hủy cuộc gọi !");
+    }
+}
+
+function boxCall(usr){
     var audio = new Audio('call.mp3');
+    audio.loop = true;
     audio.play();
+    var box = $("#call-ring");
+    box.show();
+    box.css({"background":"#34495e", "border-radius":"5px", "color":"#fff", "margin-top":"10px", "height":"50px", "line-height":"50px"});
+    box.html("<div class='text-left'><span>"+usr+" đang gọi bạn</span><div style='float:right'><button class='btn btn-success' id='nghe'>Nghe</button> <button class='btn btn-danger' id='tuchoi'>Từ chối</button></div></div>");
+    $("#nghe").on("click", function(){
+        audio.pause();
+        openStream()
+            .then(stream => {
+            playStream('localStream', stream);
+            const call = peer.call(id, stream);
+            call.on('stream', remoteStream => playStream('remoteStream', remoteStream));
+        });
+        box.html("<span>Đang trò chuyện ...</span>");
+        setTimeout(function(){ box.fadeOut(); }, 1000);
+    });
+    $("#tuchoi").on("click", function(){
+        audio.pause();
+        box.html("<span>Đã hủy cuộc gọi</span>");
+        setTimeout(function(){ box.fadeOut(); }, 1000);
+    });
+
 }
 
 // openStream()
@@ -83,11 +119,11 @@ peer.on('open', id => {
 $('#btnCall').click(() => {
     const id = $('#remoteId').val();
     openStream()
-    .then(stream => {
-        playStream('localStream', stream);
-        const call = peer.call(id, stream);
-        call.on('stream', remoteStream => playStream('remoteStream', remoteStream));
-    });
+            .then(stream => {
+            playStream('localStream', stream);
+            const call = peer.call(id, stream);
+            call.on('stream', remoteStream => playStream('remoteStream', remoteStream));
+        });
 });
 
 //Callee
@@ -101,14 +137,9 @@ peer.on('call', call => {
 });
 
 $('#ulUser').on('click', 'li', function() {
-    const id = $(this).attr('id');
-    console.log(id);
-    openStream()
-    .then(stream => {
-        playStream('localStream', stream);
-        const call = peer.call(id, stream);
-        call.on('stream', remoteStream => playStream('remoteStream', remoteStream));
-    });
+    const usr = $(this).attr('usr');
+    boxCall(usr);
+    
 });
 
 $('.message a').click(function(){
