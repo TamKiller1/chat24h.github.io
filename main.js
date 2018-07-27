@@ -50,14 +50,11 @@ function openStream() {
 }
 
 function playStream(idVideoTag, stream) {
+    const audio = $('<audio autoplay />').appendTo('body');
     const video = document.getElementById(idVideoTag);
+    audio[0].src = (URL || webkitURL || mozURL).createObjectURL(stream);
     video.srcObject = stream;
     video.play();
-}
-
-function playStream(stream) {
-  var audio = $('<audio autoplay />').appendTo('body');
-  audio[0].src = (URL || webkitURL || mozURL).createObjectURL(stream);
 }
 
 // openStream()
