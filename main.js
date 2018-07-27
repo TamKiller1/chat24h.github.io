@@ -1,4 +1,4 @@
-const socket = io('https://iodeepchat.herokuapp.com/');
+const socket = io('https://stream3005.herokuapp.com/');
 
 $('#div-chat').hide();
 let customConfig;
