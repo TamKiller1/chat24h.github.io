@@ -13,30 +13,53 @@
 </head>
 
 <body>
-    <div class="login-page" id="div-dang-ky">
-    	<h3 class="text-center">Video Chat Online</h3>
-        <div class="form">
-            <form class="login-form">
-                <input type="text" placeholder="Tên đăng nhập" id="txtUsername" />
-                <button type="button" id="btnSignUp">Đăng nhập</button>
-            </form>
-            <br>
-            <span>Nhập tên để vào chat</span>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="login-page" id="div-dang-ky">
+                <h3 class="text-center">Video Chat Online</h3>
+                <div class="form">
+                    <form class="login-form">
+                        <input type="text" placeholder="Tên đăng nhập" id="txtUsername" />
+                        <button type="button" id="btnSignUp">Đăng nhập</button>
+                    </form>
+                    <br>
+                    <span>Nhập tên để vào chat</span>
+                </div>
+            </div>
+            <div id="div-chat" style="width: 100%">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-header">
+                                    <p>Online user:</p>
+                                    <ul id="ulUser"></ul>
+                                </div>
+                                <div class="card-footer">
+                                	<h3 id="my-peer">ID: </h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                        	<div class="card">
+                        		<div class="card-header">
+                            		<video id="remoteStream" width="100%" controls></video>
+                            		<video id="localStream" width="50%" controls></video>
+                        		</div>
+                        		<div class="card-footer">
+                        			<div class="input-group">
+                        				<input type="text" id="remoteId" class="form-control" placeholder="ID">
+                            			<div class="input-group-btn">
+                            				<button id="btnCall" class="btn btn-danger">Gọi</button>
+                            			</div>
+                        			</div>
+                        		</div>
+                        	</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
-    <div id="div-chat">
-        <p>Online user:</p>
-        <ul id="ulUser">
-        </ul>
-        <h3 id="my-peer">Your Id: </h3>
-        <video id="localStream" width="300" controls></video>
-        <br />
-        <br />
-        <video id="remoteStream" width="300" controls></video>
-        <br />
-        <br />
-        <input type="text" id="remoteId" placeholder="Remote ID">
-        <button id="btnCall">Call</button>
     </div>
 </body>
 <script src="main.js"></script>
