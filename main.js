@@ -61,7 +61,7 @@ function playStream(idVideoTag, stream) {
 const peer = new Peer({ 
     key: 'peerjs', 
     host: '172.245.190.67', 
-    secure: false, 
+    secure: true, 
     port: 9000, 
     config: customConfig 
 });
