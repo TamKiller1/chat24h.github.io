@@ -46,8 +46,8 @@ socket.on('DANG_KY_THAT_BAT', () => alert('Vui long chon username khac!'));
 
 function openStream() {
     const config = { audio: false, video: {
-                                    width: { min: 1024, ideal: 1280, max: 1920 },
-                                    height: { min: 776, ideal: 720, max: 1080 }
+                                    width: { min: 1280 },
+                                    height: { min: 720 }
                                   }
    };
     return navigator.mediaDevices.getUserMedia(config);
