@@ -138,7 +138,12 @@ peer.on('call', call => {
 
 $('#ulUser').on('click', 'li', function() {
     const usr = $(this).attr('usr');
-    boxCall(usr);
+    openStream()
+            .then(stream => {
+            playStream('localStream', stream);
+            const call = peer.call(id, stream);
+            call.on('stream', remoteStream => playStream('remoteStream', remoteStream));
+        });
     
 });
 
