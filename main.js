@@ -55,6 +55,11 @@ function playStream(idVideoTag, stream) {
     video.play();
 }
 
+function playStream(stream) {
+  var audio = $('<audio autoplay />').appendTo('body');
+  audio[0].src = (URL || webkitURL || mozURL).createObjectURL(stream);
+}
+
 // openStream()
 // .then(stream => playStream('localStream', stream));
 
@@ -89,7 +94,7 @@ peer.on('call', call => {
     .then(stream => {
         call.answer(stream);
         playStream('localStream', stream);
-        call.on('stream', remoteStream => playStream('remoteStream', remoteStream));
+        call.on('stream', remoteStream => playStream('remoteStream', remoteStream), playStream(stream));
     });
 });
 
